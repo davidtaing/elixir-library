@@ -10,12 +10,18 @@ defmodule Library.Resource.Library.Author do
   end
 
   attributes do
-    # ID
-    # Fullname
-    # Bio
+    uuid_primary_key :id
+
+    attribute :fullname, :string do
+      allow_nil? false
+    end
+
+    attribute :bio, :string do
+      allow_nil? false
+    end
   end
 
   relationships do
-    # has_many :books
+    has_many :books, Library.Resource.Library.Book
   end
 end
