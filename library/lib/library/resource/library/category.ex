@@ -10,7 +10,11 @@ defmodule Library.Resource.Library.Category do
   end
 
   actions do
-    defaults [:create, :read, :update, :destroy]
+    defaults [:read, :update, :destroy]
+
+    create :create do
+      accept [:name]
+    end
   end
 
   attributes do

@@ -11,6 +11,10 @@ defmodule Library.Resource.Library.Author do
 
   actions do
     defaults [:create, :read, :update, :destroy]
+
+    create :create do
+      [:fullname, :bio]
+    end
   end
 
   attributes do

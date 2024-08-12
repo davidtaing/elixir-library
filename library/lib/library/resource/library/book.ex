@@ -10,7 +10,11 @@ defmodule Library.Resource.Library.Book do
   end
 
   actions do
-    defaults [:create, :read, :update, :destroy]
+    defaults [:read, :update, :destroy]
+
+    create :create do
+      accept [:title, :subtitle, :author_id, :category_id, :pages, :language, :isbn, :isbn13, :publish_date]
+    end
   end
 
   attributes do
