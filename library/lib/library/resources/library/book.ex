@@ -10,6 +10,7 @@ defmodule Library.Resources.Library.Book do
   end
 
   attribute do
+    # ID
     # Title
     # Subtitle
     # Author
@@ -19,5 +20,9 @@ defmodule Library.Resources.Library.Book do
     # ISBN10
     # ISBN13
     # Publish Date
+  end
+
+  relationships do
+    # belongs_to :author
   end
 end
