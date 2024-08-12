@@ -34,7 +34,8 @@ config :spark,
 
 config :library,
   ecto_repos: [Library.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [Library.Resources.Library]
 
 # Configures the endpoint
 config :library, LibraryWeb.Endpoint,
