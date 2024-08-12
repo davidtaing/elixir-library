@@ -24,5 +24,6 @@ defmodule Library.Resources.Library.Book do
 
   relationships do
     # belongs_to :author
+    belongs_to :category, Library.Resources.Library.Category
   end
 end
