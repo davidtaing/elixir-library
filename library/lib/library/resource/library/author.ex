@@ -9,6 +9,10 @@ defmodule Library.Resource.Library.Author do
     repo Library.Repo
   end
 
+  actions do
+    defaults [:create, :read, :update, :destroy]
+  end
+
   attributes do
     uuid_primary_key :id
 
