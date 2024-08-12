@@ -8,6 +8,27 @@ defmodule LibraryWeb.Router do
     plug :put_root_layout, html: {LibraryWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
+    live "/authors", LibraryWeb.AuthorLive.Index, :index
+    live "/authors/new", LibraryWeb.AuthorLive.Index, :new
+    live "/authors/:id/edit", LibraryWeb.AuthorLive.Index, :edit
+
+    live "/authors/:id", LibraryWeb.AuthorLive.Show, :show
+    live "/authors/:id/show/edit", LibraryWeb.AuthorLive.Show, :edit
+
+    live "/books", LibraryWeb.BookLive.Index, :index
+    live "/books/new", LibraryWeb.BookLive.Index, :new
+    live "/books/:id/edit", LibraryWeb.BookLive.Index, :edit
+
+    live "/books/:id", LibraryWeb.BookLive.Show, :show
+    live "/books/:id/show/edit", LibraryWeb.BookLive.Show, :edit
+
+    live "/categories", LibraryWeb.CategoryLive.Index, :index
+    live "/categories/new", LibraryWeb.CategoryLive.Index, :new
+    live "/categories/:id/edit", LibraryWeb.CategoryLive.Index, :edit
+
+    live "/categories/:id", LibraryWeb.CategoryLive.Show, :show
+    live "/categories/:id/show/edit", LibraryWeb.CategoryLive.Show, :edit
   end
 
   pipeline :api do
