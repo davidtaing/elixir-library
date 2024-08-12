@@ -1,7 +1,7 @@
-defmodule Library.Resources.Library.Author do
+defmodule Library.Resource.Library.Author do
   use Ash.Resource,
     otp_app: :library,
-    domain: Library.Resources.Library,
+    domain: Library.Resource.Library,
     data_layer: AshPostgres.DataLayer
 
   postgres do

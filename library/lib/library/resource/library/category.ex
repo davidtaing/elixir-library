@@ -1,7 +1,7 @@
-defmodule Library.Resources.Library.Category do
+defmodule Library.Resource.Library.Category do
   use Ash.Resource,
     otp_app: :library,
-    domain: Library.Resources.Library,
+    domain: Library.Resource.Library,
     data_layer: AshPostgres.DataLayer
 
   postgres do
@@ -18,6 +18,6 @@ defmodule Library.Resources.Library.Category do
   end
 
   relationships do
-    has_many :books, Library.Resources.Library.Book
+    has_many :books, Library.Resource.Library.Book
   end
 end
