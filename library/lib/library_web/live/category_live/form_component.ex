@@ -1,26 +1,26 @@
 defmodule LibraryWeb.CategoryLive.FormComponent do
   use LibraryWeb, :live_component
 
+  require Logger
+
   @impl true
   def render(assigns) do
     ~H"""
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage category records in your database.</:subtitle>
       </.header>
 
-      <.simple_form
+      <.form
         for={@form}
         id="category-form"
-        phx-target={@myself}
         phx-change="validate"
         phx-submit="save"
       >
-        <:actions>
-          <.button phx-disable-with="Saving...">Save Category</.button>
-        </:actions>
-      </.simple_form>
+        <.label>Category Name</.label>
+        <.input field={@form[:name]} type="text" />
+        <.button type="button" phx-disable-with="Saving...">Save Category</.button>
+      </.form>
     </div>
     """
   end
@@ -35,11 +35,23 @@ defmodule LibraryWeb.CategoryLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"category" => category_params}, socket) do
+    Logger.info("validate")
+
+    category_params
+    |> inspect()
+    |> Logger.info()
+
     {:noreply,
      assign(socket, form: AshPhoenix.Form.validate(socket.assigns.form, category_params))}
   end
 
   def handle_event("save", %{"category" => category_params}, socket) do
+    Logger.info("save")
+
+    category_params
+    |> inspect()
+    |> Logger.info()
+
     case AshPhoenix.Form.submit(socket.assigns.form, params: category_params) do
       {:ok, category} ->
         notify_parent({:saved, category})

@@ -19,6 +19,7 @@ defmodule LibraryWeb.CategoryLive.Index do
       row_click={fn {_id, category} -> JS.navigate(~p"/categories/#{category}") end}
     >
       <:col :let={{_id, category}} label="Id"><%= category.id %></:col>
+      <:col :let={{_name, category}} label="Name"><%= category.name %></:col>
 
       <:action :let={{_id, category}}>
         <div class="sr-only">
