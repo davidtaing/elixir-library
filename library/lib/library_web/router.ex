@@ -8,13 +8,6 @@ defmodule LibraryWeb.Router do
     plug :put_root_layout, html: {LibraryWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-
-    live "/categories", LibraryWeb.CategoryLive.Index, :index
-    live "/categories/new", LibraryWeb.CategoryLive.Index, :new
-    live "/categories/:id/edit", LibraryWeb.CategoryLive.Index, :edit
-
-    live "/categories/:id", LibraryWeb.CategoryLive.Show, :show
-    live "/categories/:id/show/edit", LibraryWeb.CategoryLive.Show, :edit
   end
 
   pipeline :api do
@@ -25,6 +18,13 @@ defmodule LibraryWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/categories", CategoryLive.Index, :index
+    live "/categories/new", CategoryLive.Index, :new
+    live "/categories/:id/edit", CategoryLive.Index, :edit
+
+    live "/categories/:id", CategoryLive.Show, :show
+    live "/categories/:id/show/edit", CategoryLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
