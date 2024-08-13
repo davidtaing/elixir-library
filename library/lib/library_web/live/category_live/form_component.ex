@@ -17,9 +17,10 @@ defmodule LibraryWeb.CategoryLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.label>Category Name</.label>
-        <.input field={@form[:name]} type="text" />
-        <.button type="button" phx-disable-with="Saving...">Save Category</.button>
+        <div class="flex flex-col gap-4">
+          <.input field={@form[:name]} label="Name" type="text" />
+          <.button type="button" phx-disable-with="Saving...">Save Category</.button>
+        </div>
       </.form>
     </div>
     """
