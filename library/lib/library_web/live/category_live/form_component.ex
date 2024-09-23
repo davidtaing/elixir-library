@@ -5,6 +5,8 @@ defmodule LibraryWeb.CategoryLive.FormComponent do
 
   @impl true
   def render(assigns) do
+    IO.inspect assigns.form
+
     ~H"""
     <div>
       <.header>
@@ -12,13 +14,14 @@ defmodule LibraryWeb.CategoryLive.FormComponent do
       </.header>
 
       <.form
+        :let={f}
         for={@form}
         id="category-form"
         phx-change="validate"
         phx-submit="save"
       >
         <div class="flex flex-col gap-4">
-          <.input field={@form[:name]} label="Name" type="text" />
+          <.input field={f[:name]} label="Name" type="text" />
           <.button type="button" phx-disable-with="Saving...">Save Category</.button>
         </div>
       </.form>
@@ -31,28 +34,17 @@ defmodule LibraryWeb.CategoryLive.FormComponent do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_form()}
+     |> assign_form()
+    }
   end
 
   @impl true
   def handle_event("validate", %{"category" => category_params}, socket) do
-    Logger.info("validate")
-
-    category_params
-    |> inspect()
-    |> Logger.info()
-
     {:noreply,
      assign(socket, form: AshPhoenix.Form.validate(socket.assigns.form, category_params))}
   end
 
   def handle_event("save", %{"category" => category_params}, socket) do
-    Logger.info("save")
-
-    category_params
-    |> inspect()
-    |> Logger.info()
-
     case AshPhoenix.Form.submit(socket.assigns.form, params: category_params) do
       {:ok, category} ->
         notify_parent({:saved, category})
